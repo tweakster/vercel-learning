@@ -8,6 +8,19 @@ resource "vercel_project" "this" {
     production_branch = "vercel-main"
   }
 
+  environment = [
+    {
+      key    = "NEXT_PUBLIC_MESSAGE_API_URL"
+      value  = var.api_url
+      target = ["production"]
+    },
+    {
+      key    = "NEXT_PUBLIC_MESSAGE_API_URL"
+      value  = var.api_url
+      target = ["development", "preview"]
+    },
+  ]
+
   root_directory = "web"
 }
 
