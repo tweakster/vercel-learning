@@ -11,5 +11,5 @@ terraform {
 }
 
 provider "vercel" {
-  team = "oak-national-academy"
+  team = var.vercel_team
 }

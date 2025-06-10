@@ -4,8 +4,8 @@ resource "vercel_project" "this" {
 
   git_repository = {
     type              = "github"
-    repo              = "oaknational/vercel-vs-gcp"
-    production_branch = "vercel-main"
+    repo              = var.git_repo_url
+    production_branch = var.git_repo_branch
   }
 
   environment = [
@@ -25,7 +25,7 @@ resource "vercel_project" "this" {
 }
 
 resource "vercel_deployment" "this" {
-  project_id  = vercel_project.this.id
-  ref         = "vercel-main"
-  production  = true
+  project_id = vercel_project.this.id
+  ref        = var.git_repo_branch
+  production = true
 }
