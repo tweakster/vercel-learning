@@ -29,6 +29,7 @@ export default function Home() {
 
   return (
       <div style={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center' }}>
+        <h1>Test</h1>
         <h2>{message}</h2>
       </div>
   );
