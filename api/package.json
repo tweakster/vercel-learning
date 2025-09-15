@@ -8,11 +8,15 @@
     "start": "next start"
   },
   "dependencies": {
+    "@google-cloud/firestore": "^7.11.4",
+    "@google-cloud/storage": "^7.17.1",
+    "@vercel/functions": "^3.1.0",
+    "google-auth-library": "^9.15.1",
     "next": "15.3.3"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
-    "@types/react": "^19"
+    "@types/react": "^19",
+    "typescript": "^5"
   }
 }
