@@ -31,7 +31,7 @@ export async function GET() {
       projectId: GCP_PROJECT_ID,
     });
 
-    // Get the list of buckets in the project
+    // Get the list of collections in the project
     const [collections] = await firestore.listCollections();
     // Extract only the bucket names
     //const bucketNames = buckets.map((bucket) => bucket.name);
@@ -39,9 +39,9 @@ export async function GET() {
     // return NextResponse.json({ buckets: bucketNames });
     return NextResponse.json({ collections: [collections] });
   } catch (error: any) {
-    console.error("Error fetching buckets:", error);
+    console.error("Error fetching collections:", error);
     return NextResponse.json(
-      { error: "Failed to fetch buckets", details: error.message },
+      { error: "Failed to fetch collections", details: error.message },
       { status: 500 }
     );
   }
