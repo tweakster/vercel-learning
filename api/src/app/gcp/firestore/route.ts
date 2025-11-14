@@ -18,8 +18,6 @@ export async function GET() {
     scopes: ["https://www.googleapis.com/auth/datastore"],
   });
 
-  console.log(await authClient!.getAccessToken());
-
   const firestore = new Firestore({
     authClient,
     projectId: process.env.GCP_PROJECT_ID,
