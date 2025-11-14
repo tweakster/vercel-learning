@@ -1,22 +1,11 @@
 import { NextResponse } from "next/server";
-import { getVercelOidcToken } from '@vercel/functions/oidc';
-
-import { ExternalAccountClient } from "google-auth-library";
 import { Firestore } from "@google-cloud/firestore";
 
-export async function GET() {
-  const authClient = ExternalAccountClient.fromJSON({
-    type: 'external_account',
-    audience: `//iam.googleapis.com/${process.env.GCP_WORKLOAD_IDENTITY_POOL_PROVIDER_ID}`,
-    subject_token_type: 'urn:ietf:params:oauth:token-type:jwt',
-    token_url: 'https://sts.googleapis.com/v1/token',
-    service_account_impersonation_url: `https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/${process.env.GCP_SERVICE_ACCOUNT_EMAIL}:generateAccessToken`,
+import getAuthClient from "@/lib/getAuthClient";
 
-    subject_token_supplier: {
-      getSubjectToken: getVercelOidcToken,
-    },
-    scopes: ["https://www.googleapis.com/auth/datastore"],
-  });
+export async function GET() {
+
+  const authClient = getAuthClient(["https://www.googleapis.com/auth/datastore"]);
 
   const firestore = new Firestore({
     authClient,
